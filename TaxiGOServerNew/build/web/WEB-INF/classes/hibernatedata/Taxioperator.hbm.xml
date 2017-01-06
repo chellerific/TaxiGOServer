@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 6, 2017 4:31:44 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernatedata.Taxioperator" table="taxioperator" catalog="taxigo" optimistic-lock="version">
+        <id name="operator" type="string">
+            <column name="operator" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="baserate" type="double">
+            <column name="baserate" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="priceperkm" type="double">
+            <column name="priceperkm" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="weekendfee" type="java.lang.Double">
+            <column name="weekendfee" precision="22" scale="0" />
+        </property>
+        <property name="rating" type="int">
+            <column name="rating" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

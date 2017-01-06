@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 6, 2017 4:31:44 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernatedata.Bookings" table="bookings" catalog="taxigo" optimistic-lock="version">
+        <id name="bookingid" type="java.lang.Integer">
+            <column name="bookingid" />
+            <generator class="identity" />
+        </id>
+        <property name="companyname" type="string">
+            <column name="companyname" length="20" not-null="true" />
+        </property>
+        <property name="customer" type="string">
+            <column name="customer" length="20" not-null="true" />
+        </property>
+        <property name="origin" type="string">
+            <column name="origin" length="45" not-null="true" />
+        </property>
+        <property name="destination" type="string">
+            <column name="destination" length="45" not-null="true" />
+        </property>
+        <property name="price" type="double">
+            <column name="price" precision="22" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
