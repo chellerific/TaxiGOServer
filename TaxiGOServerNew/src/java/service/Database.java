@@ -38,6 +38,7 @@ public class Database {
 
     /**
      * Web service operation
+     * @return 
      */
     @WebMethod(operationName = "getbookings")
     public List <Bookings> getBookings() {
@@ -56,4 +57,45 @@ public class Database {
         
         return taxis;
     }
+
+    /**
+     * Web service operation
+     * @param company
+     * @param baserate
+     * @param priceperkm
+     * @param weekendfee
+     * @return 
+     */
+    @WebMethod(operationName = "updatePrice")
+    public String updatePrice(@WebParam(name = "company") String company, @WebParam(name = "baserate") double baserate, @WebParam(name = "priceperkm") double priceperkm, @WebParam(name = "weekendfee") double weekendfee) {
+        MyHelper helper = new MyHelper();
+        String update = helper.updatePrice(company, baserate, priceperkm, weekendfee);
+        
+        return update;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "addoperator")
+    public String addoperator(@WebParam(name = "operator") String operator, @WebParam(name = "baserate") double baserate, @WebParam(name = "priceperkm") double priceperkm, @WebParam(name = "weekendfee") double weekendfee, @WebParam(name = "rating") int rating) {
+        MyHelper helper = new MyHelper();
+        String add = helper.addOperator(operator, baserate, priceperkm, weekendfee, rating);
+        
+        return add;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "addoperatorlogin")
+    public String addoperatorlogin(@WebParam(name = "operator") String operator, @WebParam(name = "password") String password, @WebParam(name = "email") String email, @WebParam(name = "phone") String phone) {
+        //TODO write your implementation code here:
+        MyHelper helper = new MyHelper();
+        String add = helper.addOperatorLogin(operator, password, email, phone);
+        
+        return add;
+    }
+    
+    
 }
