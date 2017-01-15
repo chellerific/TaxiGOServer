@@ -7,7 +7,9 @@ package service;
 
 import hibernatedata.Admininfo;
 import hibernatedata.Bookings;
+import hibernatedata.Clientinfo;
 import hibernatedata.MyHelper;
+import hibernatedata.Taxiinfo;
 import hibernatedata.Taxioperator;
 import java.util.List;
 import javax.jws.WebService;
@@ -95,6 +97,31 @@ public class Database {
         String add = helper.addOperatorLogin(operator, password, email, phone);
         
         return add;
+    }
+
+    /**
+     * Web service operation
+     * @return 
+     */
+    @WebMethod(operationName = "getOperators")
+    public List <Taxiinfo> getOperators() {
+        MyHelper helper = new MyHelper();
+        List <Taxiinfo> taxis = helper.getOperators();
+        
+        return taxis;
+        
+    }
+
+    /**
+     * Web service operation
+     * @return 
+     */
+    @WebMethod(operationName = "getclients")
+    public List <Clientinfo> getclients() {
+        MyHelper helper = new MyHelper();
+        List <Clientinfo> clients = helper.getClients();
+        
+        return clients;
     }
     
     

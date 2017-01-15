@@ -29,6 +29,8 @@ public class MyHelper {
             org.hibernate.Transaction tx = session.beginTransaction();
             Query q = session.createQuery("from Admininfo");
             adminlist = (List<Admininfo>) q.list();
+            tx.commit();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -41,9 +43,7 @@ public class MyHelper {
             org.hibernate.Transaction tx = session.beginTransaction();
             Query q = session.createQuery("from Bookings");
             bookinglist = (List<Bookings>) q.list();
-            if (tx != null) {
-                tx.commit();
-            }
+            tx.commit();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,9 +58,7 @@ public class MyHelper {
             org.hibernate.Transaction tx = session.beginTransaction();
             Query q = session.createQuery("from Taxioperator");
             taxilist = (List<Taxioperator>) q.list();
-            if (tx != null) {
-                tx.commit();
-            }
+            tx.commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -78,9 +76,7 @@ public class MyHelper {
         int result = query.executeUpdate();
         System.out.println("RESULT " + result);
 
-        if (tx != null) {
-            tx.commit();
-        }
+        tx.commit();
 
         return "Your prices have been updated.";
     }
@@ -108,6 +104,35 @@ public class MyHelper {
         tx.commit();
 
         return "Done";
+    }
+    
+    public List getClients() {
+        List<Clientinfo> clients = null;
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createQuery("from Clientinfo");
+            clients = (List<Clientinfo>) q.list();
+            
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return clients;
+    }
+    
+    public List getOperators() {
+        List<Taxiinfo> taxilist = null;
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createQuery("from Taxiinfo");
+            taxilist = (List<Taxiinfo>) q.list();
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return taxilist;
     }
 
 }
