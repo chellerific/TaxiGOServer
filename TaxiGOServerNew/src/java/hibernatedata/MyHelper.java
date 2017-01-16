@@ -30,20 +30,28 @@ public class MyHelper {
             Query q = session.createQuery("from Admininfo");
             adminlist = (List<Admininfo>) q.list();
             tx.commit();
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         return adminlist;
     }
 
-    public List getBooking() {
+    public List getBooking(String username, String usertype) {
         List<Bookings> bookinglist = null;
         try {
-            org.hibernate.Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from Bookings");
-            bookinglist = (List<Bookings>) q.list();
-            tx.commit();
+            if (usertype.equals("client")) {
+                org.hibernate.Transaction tx = session.beginTransaction();
+                Query q = session.createQuery("from Bookings where customer = '" + username + "'");
+                bookinglist = (List<Bookings>) q.list();
+                tx.commit();
+
+            } else if (usertype.equals("operator")) {
+                org.hibernate.Transaction tx = session.beginTransaction();
+                Query q = session.createQuery("from Bookings where companyname = '" + username + "'");
+                bookinglist = (List<Bookings>) q.list();
+                tx.commit();
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,6 +72,21 @@ public class MyHelper {
         }
 
         return taxilist;
+    }
+
+    public Taxioperator getPriceinfoForOperator(String username) {
+        Taxioperator prices = null;
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createQuery("from Taxioperator where operator = '" + username + "'");
+            prices = (Taxioperator) q.uniqueResult();
+
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return prices;
     }
 
     public String updatePrice(String company, double baserate, double priceperkm, double weekendfee) {
@@ -105,14 +128,14 @@ public class MyHelper {
 
         return "Done";
     }
-    
+
     public List getClients() {
         List<Clientinfo> clients = null;
         try {
             org.hibernate.Transaction tx = session.beginTransaction();
             Query q = session.createQuery("from Clientinfo");
             clients = (List<Clientinfo>) q.list();
-            
+
             tx.commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -120,7 +143,7 @@ public class MyHelper {
 
         return clients;
     }
-    
+
     public List getOperators() {
         List<Taxiinfo> taxilist = null;
         try {
@@ -133,6 +156,34 @@ public class MyHelper {
         }
 
         return taxilist;
+    }
+
+    public String reportUser(String username) {
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            String hql = "UPDATE Clientinfo set reported = " + true + " WHERE username = '" + username + "'";
+            Query query = session.createQuery(hql);
+
+            int result = query.executeUpdate();
+
+            tx.commit();
+        } catch (Exception ex) {
+
+        }
+
+        return "Done";
+    }
+    
+    public String removeUser(String username) {
+        org.hibernate.Transaction tx = session.beginTransaction();
+        String hql = "Delete Clientinfo where username  = '" + username + "'";
+        Query query = session.createQuery(hql);
+
+        int result = query.executeUpdate();
+
+        tx.commit();
+        
+        return "Done";
     }
 
 }

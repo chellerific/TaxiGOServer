@@ -40,13 +40,15 @@ public class Database {
 
     /**
      * Web service operation
+     * @param username
+     * @param usertype
      * @return 
      */
     @WebMethod(operationName = "getbookings")
-    public List <Bookings> getBookings() {
+    public List <Bookings> getBookings(String username, String usertype) {
         //TODO write your implementation code here:
         MyHelper helper = new MyHelper();
-        List <Bookings> bookings = helper.getBooking();
+        List <Bookings> bookings = helper.getBooking(username, usertype);
         
         return bookings;
     }
@@ -59,6 +61,8 @@ public class Database {
         
         return taxis;
     }
+    
+    
 
     /**
      * Web service operation
@@ -122,6 +126,42 @@ public class Database {
         List <Clientinfo> clients = helper.getClients();
         
         return clients;
+    }
+
+    /**
+     * Web service operation
+     * @return 
+     */
+    @WebMethod(operationName = "getpriceinfoforoperator")
+    public Taxioperator getpriceinfoforoperator(@WebParam(name = "operator") String operator) {
+        //TODO write your implementation code here:
+        MyHelper helper = new MyHelper();
+        Taxioperator prices = helper.getPriceinfoForOperator(operator);
+        
+        return prices;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "reportuser")
+    public String reportuser(@WebParam(name = "username") String username) {
+        //TODO write your implementation code here:
+        MyHelper helper = new MyHelper();
+        String result = helper.reportUser(username);
+        
+        return result;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "removeuser")
+    public String removeuser(@WebParam(name = "username") String username) {
+        MyHelper helper = new MyHelper();
+        String result = helper.removeUser(username);
+        
+        return result;
     }
     
     
