@@ -129,6 +129,31 @@ public class MyHelper {
         return "Done";
     }
 
+    public String addCustomer(String username, String password, String email, String phone, boolean reported) {
+        Clientinfo customer = new Clientinfo(username, password, email, phone, reported);
+        org.hibernate.Transaction tx = session.beginTransaction();
+
+        session.save(customer);
+        session.flush();
+
+        tx.commit();
+
+        return "Done";
+    }
+
+    public String addBooking(String companyname, String customer, String origin,
+            String destination, double price) {
+        Bookings booking = new Bookings(companyname, customer, origin, destination, price);
+        org.hibernate.Transaction tx = session.beginTransaction();
+
+        session.save(booking);
+        session.flush();
+
+        tx.commit();
+
+        return "Done";
+    }
+
     public List getClients() {
         List<Clientinfo> clients = null;
         try {
@@ -173,7 +198,7 @@ public class MyHelper {
 
         return "Done";
     }
-    
+
     public String removeUser(String username) {
         org.hibernate.Transaction tx = session.beginTransaction();
         String hql = "Delete Clientinfo where username  = '" + username + "'";
@@ -182,7 +207,7 @@ public class MyHelper {
         int result = query.executeUpdate();
 
         tx.commit();
-        
+
         return "Done";
     }
 
