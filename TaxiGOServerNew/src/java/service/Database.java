@@ -83,6 +83,12 @@ public class Database {
 
     /**
      * Web service operation
+     * @param operator
+     * @param baserate
+     * @param priceperkm
+     * @param weekendfee
+     * @param rating
+     * @return 
      */
     @WebMethod(operationName = "addoperator")
     public String addoperator(@WebParam(name = "operator") String operator, @WebParam(name = "baserate") double baserate, @WebParam(name = "priceperkm") double priceperkm, @WebParam(name = "weekendfee") double weekendfee, @WebParam(name = "rating") int rating) {
@@ -94,6 +100,11 @@ public class Database {
 
     /**
      * Web service operation
+     * @param operator
+     * @param password
+     * @param email
+     * @param phone
+     * @return 
      */
     @WebMethod(operationName = "addoperatorlogin")
     public String addoperatorlogin(@WebParam(name = "operator") String operator, @WebParam(name = "password") String password, @WebParam(name = "email") String email, @WebParam(name = "phone") String phone) {
@@ -160,8 +171,8 @@ public class Database {
 
     /**
      * Web service operation
-     *
-     * @return
+     * @param operator
+     * @return 
      */
     @WebMethod(operationName = "getpriceinfoforoperator")
     public Taxioperator getpriceinfoforoperator(@WebParam(name = "operator") String operator) {
@@ -174,6 +185,8 @@ public class Database {
 
     /**
      * Web service operation
+     * @param username
+     * @return 
      */
     @WebMethod(operationName = "reportuser")
     public String reportuser(@WebParam(name = "username") String username) {
@@ -186,6 +199,8 @@ public class Database {
 
     /**
      * Web service operation
+     * @param username
+     * @return 
      */
     @WebMethod(operationName = "removeuser")
     public String removeuser(@WebParam(name = "username") String username) {
