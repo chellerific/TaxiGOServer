@@ -18,16 +18,21 @@ public class Bookings implements java.io.Serializable {
     private String origin;
     private String destination;
     private double price;
+    private String date;
+    private String time;
 
     public Bookings() {
     }
 
-    public Bookings(String companyname, String customer, String origin, String destination, double price) {
+    public Bookings(String companyname, String customer, String origin, String destination, double price, 
+            String date, String time) {
         this.companyname = companyname;
         this.customer = customer;
         this.origin = origin;
         this.destination = destination;
         this.price = price;
+        this.date = date;
+        this.time = time;
     }
 
     public Integer getBookingid() {
@@ -76,6 +81,22 @@ public class Bookings implements java.io.Serializable {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+    
+    public String getDate() {
+        return this.date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+    
+    public String getTime() {
+        return this.time;
+    }
+
+    public void setTime(String price) {
+        this.time = time;
     }
 
 }

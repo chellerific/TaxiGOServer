@@ -134,10 +134,10 @@ public class Database {
     @WebMethod(operationName = "addBooking")
     public String addBooking(@WebParam(name = "companyname") String company,
             @WebParam(name = "customer") String customer, @WebParam(name = "origin") String origin, @WebParam(name = "destination") String destination,
-            @WebParam(name = "price") double price) {
+            @WebParam(name = "price") double price, @WebParam(name = "date") String date, @WebParam(name = "time") String time) {
         //TODO write your implementation code here:
         MyHelper helper = new MyHelper();
-        String add = helper.addBooking(company, customer, origin, destination, price);
+        String add = helper.addBooking(company, customer, origin, destination, price, date, time);
 
         return add;
     }

@@ -146,10 +146,10 @@ public class MyHelper {
     }
 
     public String addBooking(String companyname, String customer, String origin,
-            String destination, double price) {
+            String destination, double price, String date, String time) {
 
         try {
-            Bookings booking = new Bookings(companyname, customer, origin, destination, price);
+            Bookings booking = new Bookings(companyname, customer, origin, destination, price, date, time);
             org.hibernate.Transaction tx = session.beginTransaction();
 
             session.save(booking);

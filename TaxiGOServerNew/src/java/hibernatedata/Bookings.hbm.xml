@@ -23,5 +23,11 @@
         <property name="price" type="double">
             <column name="price" precision="22" scale="0" not-null="true" />
         </property>
+        <property name="date" type="string">
+            <column name="date" length="45" not-null="false"/>
+        </property>
+        <property name="time" type="string">
+            <column name="time" length="45" not-null="false"/>
+        </property>
     </class>
 </hibernate-mapping>
