@@ -33,6 +33,7 @@ public class MyHelper {
 
         } catch (Exception e) {
             e.printStackTrace();
+            session.getTransaction().rollback();
         }
         return adminlist;
     }
@@ -55,6 +56,7 @@ public class MyHelper {
 
         } catch (Exception e) {
             e.printStackTrace();
+            session.getTransaction().rollback();
         }
 
         return bookinglist;
@@ -69,6 +71,7 @@ public class MyHelper {
             tx.commit();
         } catch (Exception e) {
             e.printStackTrace();
+            session.getTransaction().rollback();
         }
 
         return taxilist;
@@ -84,6 +87,7 @@ public class MyHelper {
             tx.commit();
         } catch (Exception e) {
             e.printStackTrace();
+            session.getTransaction().rollback();
         }
 
         return prices;
@@ -143,13 +147,19 @@ public class MyHelper {
 
     public String addBooking(String companyname, String customer, String origin,
             String destination, double price) {
-        Bookings booking = new Bookings(companyname, customer, origin, destination, price);
-        org.hibernate.Transaction tx = session.beginTransaction();
 
-        session.save(booking);
-        session.flush();
+        try {
+            Bookings booking = new Bookings(companyname, customer, origin, destination, price);
+            org.hibernate.Transaction tx = session.beginTransaction();
 
-        tx.commit();
+            session.save(booking);
+            session.flush();
+
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        }
 
         return "Done";
     }
@@ -164,6 +174,7 @@ public class MyHelper {
             tx.commit();
         } catch (Exception e) {
             e.printStackTrace();
+            session.getTransaction().rollback();
         }
 
         return clients;
@@ -178,6 +189,7 @@ public class MyHelper {
             tx.commit();
         } catch (Exception e) {
             e.printStackTrace();
+            session.getTransaction().rollback();
         }
 
         return taxilist;
