@@ -95,7 +95,7 @@ public class Bookings implements java.io.Serializable {
         return this.time;
     }
 
-    public void setTime(String price) {
+    public void setTime(String time) {
         this.time = time;
     }
 

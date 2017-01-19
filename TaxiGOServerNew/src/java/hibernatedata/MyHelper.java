@@ -5,7 +5,6 @@
  */
 package hibernatedata;
 
-import java.math.BigDecimal;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -223,4 +222,19 @@ public class MyHelper {
         return "Done";
     }
 
+    public String updatePasswordClient(String username, String newPass) {
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query update = session.createQuery("UPDATE Clientinfo SET password = '" + newPass + "' WHERE username = '" + username + "'");
+            int a = update.executeUpdate();
+            tx.commit();
+            System.out.println("RESULT: " + a);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        }
+        return "Done";
+    }
 }
+

@@ -130,6 +130,14 @@ public class Database {
 
     /**
      * Web service operation
+     * @param company
+     * @param customer
+     * @param origin
+     * @param destination
+     * @param price
+     * @param date
+     * @param time
+     * @return 
      */
     @WebMethod(operationName = "addBooking")
     public String addBooking(@WebParam(name = "companyname") String company,
@@ -207,6 +215,14 @@ public class Database {
         MyHelper helper = new MyHelper();
         String result = helper.removeUser(username);
 
+        return result;
+    }
+    
+    @WebMethod(operationName = "updatepasswordclient")
+    public String updatepasswordclient(String username, String newPass) {
+        MyHelper helper = new MyHelper();
+        String result = helper.updatePasswordClient(username, newPass);
+        
         return result;
     }
 
