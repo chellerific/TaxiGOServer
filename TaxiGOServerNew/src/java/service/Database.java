@@ -219,7 +219,7 @@ public class Database {
     }
     
     @WebMethod(operationName = "updatepasswordclient")
-    public String updatepasswordclient(String username, String newPass) {
+    public String updatepasswordclient(@WebParam(name = "username")String username, @WebParam(name = "newpass") String newPass) {
         MyHelper helper = new MyHelper();
         String result = helper.updatePasswordClient(username, newPass);
         
