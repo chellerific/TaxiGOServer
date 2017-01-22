@@ -14,6 +14,8 @@ import org.hibernate.Session;
  * @author Sara
  */
 public class MyHelper {
+    /*This class contains all database methods which we can access and retrieve as a 
+    a web service in the client application to help us in our business logic*/
 
     Session session = null;
 
